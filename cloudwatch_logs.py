@@ -8,6 +8,11 @@ logs_client = boto3.client("logs")
 # if the interval between lambda invocations is short, a new log stream may not be created
 # so the timestamps on the log events should be used to determine the latest log stream
 
+# the blocks have a unique RequestId but s3 cp in the test does not know what it is.
+# metadata can be added to the cp which is reflected in the block.
+
+# I'm worried about 2 simultanious invocations of the same script...
+
 """
 
 def get_latest_log_stream(log_group_name):
