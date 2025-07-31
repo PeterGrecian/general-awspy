@@ -11,7 +11,7 @@ def cp(local_file, bucket_name, s3_object_key):
 def rm(bucket_name, s3_object_key):
     s3.delete_object(Bucket=bucket_name, Key=s3_object_key)
 
-def ls(bucket_name):
+def ls(bucket_name, debug=False):
     objs = list()
     paginator = s3.get_paginator('list_objects_v2')
 
@@ -19,7 +19,7 @@ def ls(bucket_name):
     for page in response_iterator:
         for obj in page.get('Contents', []):
             objs.append(obj['Key'])   
-    #print(f"Objects in {bucket_name}: {objs}")
+    print(f"Objects in {bucket_name}: {objs}")
     return objs      
 
 def cp_back(bucket_name, s3_object_key, local_file):
