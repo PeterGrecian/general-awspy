@@ -1,0 +1,4 @@
+{
+  "name": "My AWS Dev Container",
+  "build": { "dockerfile": "Dockerfile" }
+}
